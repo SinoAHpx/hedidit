@@ -50,6 +50,9 @@ export function shouldIgnore(
     rootPath: string,
     gitIgnoreRules: GitIgnoreRule[]
 ): boolean {
+    if (gitIgnoreRules.length === 0) {
+        return true;
+    }
     // Always include the .gitignore file itself
     if (path.endsWith(".gitignore")) {
         return false;
@@ -85,6 +88,14 @@ function matchPattern(path: string, pattern: string, isDirectoryPattern: boolean
         return true;
     }
 
+    // Check for direct directory matches (like 'nest' in gitignore)
+    const pathParts = normalizedPath.split("/");
+    for (let i = 0; i < pathParts.length; i++) {
+        if (pathParts[i] === pattern) {
+            return true;
+        }
+    }
+
     // Directory-only patterns should only match directories
     if (isDirectoryPattern && !existsSync(path)) {
         return false;
@@ -102,7 +113,6 @@ function matchPattern(path: string, pattern: string, isDirectoryPattern: boolean
         }
 
         // Check if it matches any parent directory or file
-        const pathParts = normalizedPath.split("/");
         for (let i = 0; i < pathParts.length; i++) {
             const partialPath = pathParts.slice(0, i + 1).join("/");
             if (regex.test(partialPath)) {
