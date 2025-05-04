@@ -8,6 +8,148 @@ export type GitIgnoreRule = {
     isDirectory: boolean;
 };
 
+// Tech stack detection types
+export type ConfigFileCheck = {
+    file: string;
+    tech: string;
+};
+
+export type DependencyTechMap = Record<string, string>;
+
+export type OrgTechMap = Record<string, string>;
+
+// Tech stack detection configuration
+export const CONFIG_FILE_CHECKS: ConfigFileCheck[] = [
+    { file: 'tsconfig.json', tech: 'TypeScript' },
+    { file: 'jsconfig.json', tech: 'JavaScript' },
+    { file: 'components.json', tech: 'Shadcn UI' },
+    { file: 'bun.lock', tech: 'Bun' },
+    { file: 'yarn.lock', tech: 'Yarn' },
+    { file: 'pnpm-lock.yaml', tech: 'pnpm' },
+    { file: 'deno.json', tech: 'Deno' },
+    { file: 'deno.jsonc', tech: 'Deno' },
+    { file: 'vite.config.js', tech: 'Vite' },
+    { file: 'vite.config.ts', tech: 'Vite' },
+    { file: 'webpack.config.js', tech: 'Webpack' },
+    { file: 'webpack.config.ts', tech: 'Webpack' },
+    { file: 'next.config.js', tech: 'Next.js' },
+    { file: 'next.config.ts', tech: 'Next.js' },
+    { file: 'svelte.config.js', tech: 'Svelte' },
+    { file: 'svelte.config.ts', tech: 'Svelte' },
+    { file: 'astro.config.mjs', tech: 'Astro' },
+    { file: 'astro.config.ts', tech: 'Astro' },
+    { file: 'remix.config.js', tech: 'Remix' },
+    { file: 'tailwind.config.js', tech: 'Tailwind CSS' },
+    { file: 'tailwind.config.ts', tech: 'Tailwind CSS' },
+    { file: 'jest.config.js', tech: 'Jest' },
+    { file: 'jest.config.ts', tech: 'Jest' },
+    { file: 'vitest.config.ts', tech: 'Vitest' },
+    { file: 'cypress.config.js', tech: 'Cypress' },
+    { file: 'playwright.config.ts', tech: 'Playwright' },
+];
+
+// Dependency to tech mapping
+export const DEP_TO_TECH_MAP: DependencyTechMap = {
+    // Frontend frameworks and libraries
+    'react': 'React',
+    'vue': 'Vue.js',
+    'angular': 'Angular',
+    'svelte': 'Svelte',
+    'preact': 'Preact',
+    'solid-js': 'Solid.js',
+    'lit': 'Lit',
+
+    // UI frameworks
+    '@mui/material': 'Material UI',
+    '@chakra-ui/react': 'Chakra UI',
+    '@mantine/core': 'Mantine',
+    'antd': 'Ant Design',
+    'bootstrap': 'Bootstrap',
+    'tailwindcss': 'Tailwind CSS',
+
+    // Meta frameworks
+    'next': 'Next.js',
+    'nuxt': 'Nuxt.js',
+    'sveltekit': 'SvelteKit',
+    'astro': 'Astro',
+    'remix': 'Remix',
+    'gatsby': 'Gatsby',
+
+    // Backend frameworks
+    'express': 'Express',
+    'fastify': 'Fastify',
+    'koa': 'Koa',
+    'nest': 'NestJS',
+    'hapi': 'Hapi',
+    '@nestjs/core': 'NestJS',
+
+    // State management
+    'redux': 'Redux',
+    'recoil': 'Recoil',
+    'jotai': 'Jotai',
+    'zustand': 'Zustand',
+    'mobx': 'MobX',
+    'xstate': 'XState',
+
+    // Data fetching
+    'graphql': 'GraphQL',
+    '@apollo/client': 'Apollo Client',
+    'react-query': 'React Query',
+    '@tanstack/react-query': 'TanStack Query',
+    'swr': 'SWR',
+
+    // Testing
+    'jest': 'Jest',
+    'vitest': 'Vitest',
+    '@testing-library/react': 'React Testing Library',
+    'cypress': 'Cypress',
+    'playwright': 'Playwright',
+
+    // Utilities
+    'zod': 'Zod',
+    'yup': 'Yup',
+    'lodash': 'Lodash',
+    'ramda': 'Ramda',
+    'date-fns': 'date-fns',
+    'dayjs': 'Day.js',
+    'axios': 'Axios',
+    'ky': 'Ky',
+
+    // Build tools
+    'vite': 'Vite',
+    'webpack': 'Webpack',
+    'rollup': 'Rollup',
+    'esbuild': 'esbuild',
+    'parcel': 'Parcel',
+
+    // Others
+    '@modelcontextprotocol/sdk': 'Model Context Protocol',
+};
+
+// Organization name to tech mapping
+export const ORG_TO_TECH_MAP: OrgTechMap = {
+    'types': 'TypeScript',
+    'typescript-eslint': 'ESLint',
+    'testing-library': 'Testing Library',
+    'storybook': 'Storybook',
+    'emotion': 'Emotion',
+    'styled': 'Styled Components',
+    'tanstack': 'TanStack',
+    'reduxjs': 'Redux',
+    'apollo': 'Apollo',
+    'supabase': 'Supabase',
+    'prisma': 'Prisma',
+    'vercel': 'Vercel',
+    'aws': 'AWS SDK',
+    'firebase': 'Firebase',
+    'tarojs': 'Taro',
+};
+
+// Helper function to capitalize first letter of a string
+export function capitalizeFirstLetter(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 export async function parseGitIgnoreFile(rootPath: string): Promise<GitIgnoreRule[]> {
     const gitIgnorePath = join(rootPath, ".gitignore");
 
