@@ -1,7 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { getProjectStructure } from "./tools/getProjectInfo";
+import { getProjectStructure } from "./tools/getProjectStructure";
 
 const server = new McpServer({
     name: "hedidit-mcp",

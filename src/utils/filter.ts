@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { join, relative, sep, isAbsolute, normalize } from "node:path";
+import { join, relative, sep, normalize } from "node:path";
 import { existsSync } from "node:fs";
 
 export type GitIgnoreRule = {
