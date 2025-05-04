@@ -1,7 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { getProjectStructure } from "./tools/getProjectInfo";
+import { getProjectStructure, getTechStack } from "./tools/getProjectInfo";
 
 const server = new McpServer({
     name: "hedidit-mcp",
@@ -12,11 +12,16 @@ server.tool('getProjectInfo', 'Get project structure and tech stack. It is essen
     root: z.string().describe("The absolute path of the project root path.")
 }, async ({ root }) => {
     const structure = await getProjectStructure(root);
+    const techStack = await getTechStack(root);
     return {
         content: [
             {
                 "type": "text",
                 "text": structure
+            },
+            {
+                "type": "text",
+                "text": techStack
             }
         ]
     }
