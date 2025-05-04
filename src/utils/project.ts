@@ -93,26 +93,11 @@ export async function getTechStack(rootPath: string): Promise<string[]> {
 
                     if (ORG_TO_TECH_MAP[orgName] && !techStack.includes(ORG_TO_TECH_MAP[orgName])) {
                         techStack.push(ORG_TO_TECH_MAP[orgName]);
-                    } 
-                    else if (!techStack.includes(capitalizeFirstLetter(orgName))) {
-                        // If not in our mapping but has multiple packages, use the org name as tech stack
-                        const orgPackages = Object.keys(dependencies).filter(d =>
-                            d.startsWith(`@${orgName}/`));
-
-                        if (orgPackages.length > 1) {
-                            techStack.push(capitalizeFirstLetter(orgName));
-                        }
+                    }
+                    else {
+                        techStack.push(capitalizeFirstLetter(orgName))
                     }
                 }
-            }
-
-            // Check for Node.js
-            if (packageJson.engines?.node ||
-                packageJson.devDependencies?.['@types/node'] ||
-                dependencies['@types/node'] ||
-                !techStack.includes('Bun') ||
-                !techStack.includes('Deno')) {
-                techStack.push('Node.js');
             }
         }
     } catch (error) {

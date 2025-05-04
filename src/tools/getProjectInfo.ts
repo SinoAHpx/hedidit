@@ -8,7 +8,6 @@ export async function getProjectStructure(root: string) {
 
 export async function getTechStack(root: string) {
     const techStack = await getProjectTechStack(root);
-    
     return `Tech Stack:\n${techStack.join(", ")}`;
 }
 
