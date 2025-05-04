@@ -1,15 +1,10 @@
 import { readdir } from "node:fs/promises";
 import { join } from "node:path";
-import { parseGitIgnoreFile, shouldIgnore, type GitIgnoreRule } from "../utils/filter";
+import { parseGitIgnoreFile, shouldIgnore } from "./filter";
 
-export async function getProjectStructure(root: string) {
-    const gitIgnoreRules = await parseGitIgnoreFile(root);
-    const tree = await buildFileTree(root, root, "", gitIgnoreRules);
-    return `Project Structure:\n${root}\n${tree}`
-}
-
-async function buildFileTree(rootPath: string, currentPath: string, indent = "", gitIgnoreRules: GitIgnoreRule[] = []) {
+export async function buildFileTree(rootPath: string, currentPath: string, indent = "") {
     let result = "";
+    const gitIgnoreRules = await parseGitIgnoreFile(rootPath);
     const entries = await readdir(currentPath, { withFileTypes: true });
 
     const sortedEntries = entries.sort((a, b) => {
@@ -43,7 +38,7 @@ async function buildFileTree(rootPath: string, currentPath: string, indent = "",
 
         if (entry.isDirectory()) {
             const newIndent = indent + (isLast ? "    " : "│   ");
-            result += await buildFileTree(rootPath, entryPath, newIndent, gitIgnoreRules);
+            result += await buildFileTree(rootPath, entryPath, newIndent);
         }
     }
 
