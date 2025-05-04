@@ -6,10 +6,11 @@ To install dependencies:
 bun install
 ```
 
-To run:
+To use:
 
-```bash
-bun run index.ts
+```json
+"hedidit": {
+	"command": "bunx",
+	"args": ["hedidit"]
+		}
 ```
-
-This project was created using `bun init` in bun v1.2.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
