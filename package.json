@@ -1,19 +1,20 @@
 {
 	"name": "hedidit",
 	"module": "index.ts",
-  "keywords": ["MCP", "modelcontextprotocol", "LLMs"],
-	"version": "1.0.2",
+	"keywords": ["MCP", "modelcontextprotocol", "LLMs"],
+	"version": "1.0.3",
 	"type": "module",
+	"files": ["dist", "LICENSE", "README.md"],
+  "license": "MIT",
 	"bin": {
-		"hedidit": "./src/index.ts"
+		"hedidit": "./dist/index.js"
 	},
 	"scripts": {
-		"build": "bun src/index.ts"
+		"build": "bunx tsc",
+		"prepublishOnly": "bun run build"
 	},
 	"devDependencies": {
-		"@types/bun": "latest"
-	},
-	"peerDependencies": {
+		"@types/bun": "latest",
 		"typescript": "^5"
 	},
 	"dependencies": {
