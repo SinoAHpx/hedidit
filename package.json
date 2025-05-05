@@ -1,21 +1,25 @@
 {
-  "name": "hedidit",
-  "module": "index.ts",
-  "type": "module",
-  "scripts": {
-    "build": "bun src/index.ts"
-  },
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.11.0",
-    "@types/minimatch": "^5.1.2",
-    "minimatch": "^10.0.1",
-    "react": "^19.1.0",
-    "zod": "^3.24.3"
-  }
+	"name": "hedidit",
+	"module": "index.ts",
+	"version": "1.0.1",
+	"type": "module",
+	"bin": {
+		"hedidit": "src/index.ts"
+	},
+	"scripts": {
+		"build": "bun src/index.ts"
+	},
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.11.0",
+		"@types/minimatch": "^5.1.2",
+		"minimatch": "^10.0.1",
+		"react": "^19.1.0",
+		"zod": "^3.24.3"
+	}
 }

@@ -1,16 +1,5 @@
 # hedidit
 
-To install dependencies:
+The MCP server helps you to map project structure and tech stack instantly. 
 
-```bash
-bun install
-```
-
-To use:
-
-```json
-"hedidit": {
-	"command": "bunx",
-	"args": ["hedidit"]
-		}
-```
+*Currently supports Node/Bun projects only.*
