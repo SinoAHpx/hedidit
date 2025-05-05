@@ -2,10 +2,10 @@
 	"name": "hedidit",
 	"module": "index.ts",
 	"keywords": ["MCP", "modelcontextprotocol", "LLMs"],
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"type": "module",
 	"files": ["dist", "LICENSE", "README.md"],
-  "license": "MIT",
+	"license": "MIT",
 	"bin": {
 		"hedidit": "./dist/index.js"
 	},
